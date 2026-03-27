@@ -1,0 +1,222 @@
+:root {
+  color-scheme: dark;
+  --bg: #030303;
+  --gold: #e4c07d;
+  --gold-soft: rgba(241, 221, 182, 0.82);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+}
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+button {
+  font: inherit;
+}
+
+.app {
+  min-height: 100vh;
+  color: var(--gold);
+  background:
+    radial-gradient(circle at 50% -10%, rgba(255, 183, 58, 0.12), transparent 26%),
+    radial-gradient(circle at 50% 120%, rgba(106, 19, 9, 0.28), transparent 32%),
+    #030303;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.bg-effects {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.spark {
+  position: absolute;
+  border-radius: 999px;
+  background: #ffcf73;
+  box-shadow: 0 0 12px rgba(255, 191, 84, 0.45);
+  filter: blur(0.4px);
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 28px 16px 48px;
+}
+
+.header {
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 0;
+  font-family: 'Trajan Pro', Trajan, Cinzel, 'Times New Roman', serif;
+  font-size: clamp(1.8rem, 4.2vw, 2.8rem);
+  line-height: 1;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  text-shadow: 0 0 18px rgba(226, 180, 91, 0.18);
+}
+
+.rule {
+  width: min(220px, 55vw);
+  height: 1px;
+  margin: 14px auto 0;
+  background: linear-gradient(90deg, transparent, #d9ae67, transparent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 16px;
+}
+
+.card-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.roman {
+  margin-bottom: 8px;
+  text-align: center;
+  font-size: 0.76rem;
+  letter-spacing: 0.34em;
+  color: #f0ddba;
+}
+
+.card-button {
+  width: 100%;
+  max-width: 185px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  perspective: 1200px;
+}
+
+.flip-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 3.35;
+  border-radius: 1.2rem;
+  transition: transform 700ms;
+  transform-style: preserve-3d;
+}
+
+.flip-card.is-open {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(213, 171, 103, 0.25);
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.55);
+  backface-visibility: hidden;
+  background: #120804;
+}
+
+.card-front {
+  transform: rotateY(180deg);
+}
+
+.card-face img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.placeholder {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(255, 196, 87, 0.22), transparent 18%),
+    linear-gradient(180deg, #0b0b0b 0%, #140907 62%, #220c08 100%);
+}
+
+.placeholder-title {
+  font-family: 'Trajan Pro', Trajan, Cinzel, 'Times New Roman', serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+}
+
+.placeholder p {
+  margin: 12px 0 0;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: rgba(243, 223, 182, 0.68);
+}
+
+.desc {
+  max-width: 185px;
+  max-height: 0;
+  margin-top: 12px;
+  overflow: hidden;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: max-height 500ms ease, opacity 500ms ease, transform 500ms ease;
+  pointer-events: none;
+}
+
+.desc.visible {
+  max-height: 160px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.desc p {
+  margin: 0;
+  font-size: 0.72rem;
+  line-height: 1.55;
+  color: var(--gold-soft);
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-inline: 24px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px 20px;
+  }
+
+  .roman {
+    font-size: 0.9rem;
+  }
+
+  .desc p {
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 34px 24px;
+  }
+}
